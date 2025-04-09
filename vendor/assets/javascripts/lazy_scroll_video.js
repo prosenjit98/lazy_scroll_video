@@ -1,5 +1,6 @@
 (function () {
   document.addEventListener("DOMContentLoaded", function () {
+    console.log('initiating lazy scroll video');
     const observer = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -9,10 +10,12 @@
           const video = document.createElement("video");
           video.src = videoSrc;
           video.controls = true;
-          video.autoplay = true;
-          video.muted = true;
+          video.autoplay = false;
+          video.muted = true; // Autoplay without mute won't work in many browsers
           video.playsInline = true;
-          video.style.maxWidth = "100%";
+          video.style.width = "100%";
+          video.style.height = "100%";
+          video.style.objectFit = "contain";
 
           container.innerHTML = "";
           container.appendChild(video);
@@ -23,6 +26,7 @@
     });
 
     document.querySelectorAll(".lazy-video-container").forEach(container => {
+      console.log('initiating content observer');
       observer.observe(container);
     });
   });
