@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "A small JS gem for lazy-loading videos into view for Rails apps."
   spec.homepage = "https://github.com/prosenjit98/lazy_scroll_video"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.0.0"
+  spec.required_ruby_version = ">= 2.7.0"
 
   spec.metadata["homepage_uri"] = spec.homepage
   # spec.metadata["source_code_uri"] = "TODO: Put your gem's public repo URL here."
@@ -23,7 +23,7 @@ Gem::Specification.new do |spec|
   spec.files = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").reject do |f|
       (File.expand_path(f) == __FILE__) ||
-        f.start_with?(*%w[bin/ test/ spec/ features/ .git .github appveyor Gemfile])
+        f.start_with?(*%w[bin/ test/ spec/ features/ .git .github appveyor Gemfile]) || f.end_with?(".gem")
     end
   end
   spec.bindir = "exe"
